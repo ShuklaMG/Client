@@ -1,0 +1,13 @@
+<tr>
+  <td><input type="checkbox" (click)="doOperation()" /></td>
+  <td>{{ mutual.mutualFundName }}</td>
+  <td>{{ mutual.mutualFundUnits }}</td>
+  <td>
+    <input
+      type="number"
+      min="0"
+      max="{{ mutual.mutualFundUnits }}"
+      [(ngModel)]="sales.soldUnits"
+    />
+  </td>
+</tr>

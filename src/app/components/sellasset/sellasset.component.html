@@ -1,0 +1,50 @@
+<div class="container-fluid text-center">
+  <h1 class="text-center mt-2">Sell Assets</h1>
+  <button class="btn btn-primary" (click)="getAsset()" mat-raised-button>
+    View Assets
+  </button>
+  <div class="row mt-5">
+    <div class="col-lg-6">
+      <table class="table table-striped">
+        <tr>
+          <th scope="col">Asset Name</th>
+          <th scope="col">Units to be Sold</th>
+        </tr>
+        <tr *ngFor="let asset of saleAsset">
+          <td>{{ asset.assetName }}</td>
+          <td>{{ asset.soldUnits }}</td>
+        </tr>
+      </table>
+      <button (click)="sellAsset()" class="btn btn-success">Sell Stocks</button>
+
+      <p *ngIf="sellstatus" class="mt-2">Your stocks has been sold.</p>
+      <p *ngIf="zeroasset" class="text text-danger mt-2">Can't sale 0 stocks</p>
+
+      <!-- <p>{{ assetSaleResponse }}</p> -->
+    </div>
+
+    <div class="col-lg-6">
+      <table class="table table-striped">
+        <tr>
+          <th>checkbox</th>
+          <th scope="col">Asset</th>
+          <th scope="col">Available Units</th>
+          <th scope="col">Units to be Sold</th>
+        </tr>
+        <tr></tr>
+      </table>
+      <app-vieweachstock
+        *ngFor="let stock of portfolioResponse.stockDetailList"
+        [stock]="stock"
+        (removeEvent)="remove($event)"
+        (addEvent)="add($event)"
+      ></app-vieweachstock>
+      <app-vieweachmutual
+        *ngFor="let mutualFund of portfolioResponse.mutualFundList"
+        [mutual]="mutualFund"
+        (removeEvent)="remove($event)"
+        (addEvent)="add($event)"
+      ></app-vieweachmutual>
+    </div>
+  </div>
+</div>

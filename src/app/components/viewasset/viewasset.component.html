@@ -1,0 +1,70 @@
+<div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+  <div class="card card0 border-0">
+    <div class="row d-flex">
+      <div class="col-lg-6">
+        <div class="card2 card border-0 px-4 py-5">
+          <div class="card">
+            <div class="card-body text-center">
+              <h1>My Stocks Networth :</h1>
+              <h3>Rs.{{ balance }}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card2 card border-0 px-4 py-5">
+          <mat-accordion>
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title> Asset Details </mat-panel-title>
+                <mat-panel-description>
+                  In asset both mutual or stock list
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Counts</th>
+                    <th scope="col">Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let emp1 of portfolioResponse.mutualFundList">
+                    <td>{{ emp1.mfId }}</td>
+                    <td>{{ emp1.mutualFundName }}</td>
+                    <td>{{ emp1.mutualFundUnits }}</td>
+                    <span *ngFor="let item of allMutual">
+                      <td *ngIf="item.mutualFundName == emp1.mutualFundName">
+                        RS. {{ item.mutualFundValue }}
+                      </td>
+                    </span>
+                  </tr>
+                </tbody>
+                <tbody>
+                  <tr *ngFor="let emp of portfolioResponse.stockDetailList">
+                    <td>{{ emp.stId }}</td>
+                    <td>{{ emp.stockName }}</td>
+                    <td>{{ emp.stockCount }}</td>
+                    <span *ngFor="let item of allStock">
+                      <td *ngIf="item.stockName == emp.stockName">
+                        RS. {{ item.stockValue }}
+                      </td>
+                    </span>
+                  </tr>
+                </tbody>
+              </table>
+              <p>
+                <button routerLink="/sellasset" class="accent">
+                  Do you want sell?
+                </button>
+              </p>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
